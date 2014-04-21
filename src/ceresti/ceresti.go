@@ -27,7 +27,7 @@ type Task struct {
 	Id int64
 	Desc string
 	Due string
-	Completed string
+	Completed bool
 }
 
 func increment() int64{
@@ -50,10 +50,6 @@ func CreateTask(w rest.ResponseWriter, r *rest.Request) {
 	}
 	if task.Due == "" {
 		rest.Error(w, "Due Date required", 400)
-		return
-	}
-	if task.Completed == "" {
-		rest.Error(w, "Completion status wrongly assigned", 400)
 		return
 	}
 	task.Id = increment()
@@ -100,7 +96,7 @@ func UpdateTask(w rest.ResponseWriter, r *rest.Request) {
 	if newtask.Due != "" {
 		oldtask.Due = newtask.Due
 	}
-	if newtask.Completed != "" {
+	if newtask.Completed == true || newtask.Completed == false {
 		oldtask.Completed = newtask.Completed
 	}
 	store[Id] = oldtask
