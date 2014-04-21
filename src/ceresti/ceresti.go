@@ -14,11 +14,11 @@ func main() {
                 EnableRelaxedContentType: true,
         }
 	handler.SetRoutes(
-		&rest.Route{"POST", "/add", CreateTask},
-		&rest.Route{"GET", "/task/:id", ReadTask},
-		&rest.Route{"GET", "/list", ReadAllTasks},
-		&rest.Route{"POST", "/update/:id", UpdateTask},
-		&rest.Route{"POST", "/delete/:id", DeleteTask},
+		&rest.Route{"POST", "/task/add", CreateTask},
+		&rest.Route{"GET", "/task/list", ReadAllTasks},
+		&rest.Route{"GET", "/task/:id", ReadTask},		
+		&rest.Route{"POST", "/task/:id", UpdateTask},
+		&rest.Route{"POST", "/task/delete/:id", DeleteTask},
 	)
 	http.ListenAndServe(":8080", &handler)
 }
